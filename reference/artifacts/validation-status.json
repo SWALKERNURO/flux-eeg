@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "stage": "complete",
+  "reason": "All three deterministic fixtures passed the declared SciPy PSD and specparam parameter tolerances.",
+  "completed": [
+    "Pinned dependency manifest created",
+    "Three deterministic fixtures generated",
+    "Flux outputs exported for every fixture",
+    "Python SciPy/specparam runner executed with pinned dependencies",
+    "Parameter-by-parameter comparator passed",
+    "Tolerance policy documented",
+    "Machine-readable validation-report.json written"
+  ],
+  "claim": "Flux spectral-fit 0.2 is validated against SciPy 1.14.1 and specparam 2.0.0rc7 for the included deterministic validation domain and declared tolerances."
+}
