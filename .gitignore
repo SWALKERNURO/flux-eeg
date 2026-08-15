@@ -1,5 +1,9 @@
 node_modules/
 dist/
+release/
+desktop-release/
+desktop-package/
+installer-output/
 work/
 *.log
 __pycache__/
