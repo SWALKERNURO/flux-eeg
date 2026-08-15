@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { buildManifest, buildResultsCsv } from "../src/export.js";
+import { buildHtmlReport, buildManifest, buildMethodsSummary, buildResultsCsv } from "../src/export.js";
 
 const conditions = [
   { id: "open", name: "Eyes open", start: 0, end: 60 },
@@ -22,11 +22,38 @@ test("manifest export preserves provenance, exclusions, and clean intervals", ()
     conditions,
     artifacts: [{ start: 12, end: 14 }],
     settings: { fmin: 1, fmax: 45 },
+    dynamicsSettings: { windowSec: 8, stepSec: 4 },
+    dynamic: [{ t: 4, v: 1.7, r2: 0.95 }],
     conditionResults: { open: result },
     duration: 240,
   });
-  assert.equal(manifest.schema, "flux-eeg-analysis-manifest/v0.2");
+  assert.equal(manifest.schema, "flux-eeg-analysis-manifest/v0.4");
   assert.equal(manifest.validation.status, "passed");
   assert.deepEqual(manifest.artifactExclusions, [{ start: 12, end: 14 }]);
   assert.deepEqual(manifest.results.open.cleanIntervals, [[0, 60]]);
+  assert.equal(manifest.dynamics.points[0].v, 1.7);
+});
+
+test("methods export records preprocessing and reference validation", () => {
+  const methods = buildMethodsSummary({
+    recording: { name: "demo.csv", rate: 250 }, selected: ["O1", "O2"], conditions, artifacts: [], duration: 240,
+    preprocessing: { detrend: true, notchHz: 60, highpassHz: 0.5, lowpassHz: 70, reference: "none" },
+  });
+  assert.match(methods, /linear detrending/);
+  assert.match(methods, /0\.5–70 Hz zero-phase biquad filter/);
+  assert.match(methods, /specparam 2\.0\.0rc7/);
+});
+
+test("HTML report escapes source content and includes analyzed conditions", () => {
+  const report = buildHtmlReport({
+    recording: { name: "<demo>.csv", rate: 250 },
+    selected: ["O1", "O2"],
+    conditions,
+    artifacts: [],
+    conditionResults: { open: result },
+    duration: 240,
+  });
+  assert.match(report, /&lt;demo&gt;\.csv/);
+  assert.match(report, /Eyes open/);
+  assert.doesNotMatch(report, /<demo>/);
 });
