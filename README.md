@@ -70,3 +70,7 @@ Related public work:
 ## Status
 
 **Research prototype / active development.** See the code, [specification](PRODUCT-SPEC.md), [architecture](ARCHITECTURE.md), and [tests](tests/) for evidence of implementation and known limitations.
+
+## Related interdisciplinary research
+
+For the broader philosophy of mind and human–AI interaction agenda behind this research portfolio, see [Spencer H. Walker's research profile](https://github.com/SWALKERNURO/living-field/blob/main/RESEARCH-PROFILE.md). It includes a **proposed** study on AI conversational memory, naturalistic speech, contextual inference, and trust calibration; it is separate from the EEG methods and evidence documented here.
