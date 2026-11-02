@@ -1,5 +1,7 @@
 # Flux EEG
 
+[![DOI](https://zenodo.org/badge/1335343804.svg)](https://zenodo.org/badge/latestdoi/1335343804)
+
 **Local-first EEG spectral analysis and experimental condition comparison**
 
 Flux EEG is a browser-based research prototype for inspecting EEG recordings, estimating aperiodic (1/f-like) spectral structure, and comparing user-defined experimental conditions. It emphasizes **transparent methods, reproducible outputs, and conservative scientific interpretation**.
