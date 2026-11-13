@@ -14,7 +14,7 @@ Aperiodic EEG spectral features can be useful descriptive measures, but their in
 
 The prototype is intended for exploratory research and method development. **It is not a diagnostic device, a consciousness detector, or a substitute for validated clinical EEG analysis.**
 
-## Capabilities described in the V0.2 specification
+## Analysis foundation and V0.8 scope
 
 - Import delimited OpenBCI recording data and inspect detected metadata.
 - Review raw signals, choose channels and time intervals, and mark events.
@@ -39,7 +39,7 @@ The documented prototype performs import, spectral estimation, fitting, and visu
 
 ## Run locally
 
-Requires Node.js and npm.
+Requires Node.js 22.12 or newer and npm; CI uses Node.js 24.
 
 ```bash
 npm ci
@@ -76,3 +76,36 @@ Related public work:
 ## Related interdisciplinary research
 
 For the broader philosophy of mind and human–AI interaction agenda behind this research portfolio, see [Spencer H. Walker's research profile](https://github.com/SWALKERNURO/living-field/blob/main/RESEARCH-PROFILE.md). It includes a **proposed** study on AI conversational memory, naturalistic speech, contextual inference, and trust calibration; it is separate from the EEG methods and evidence documented here.
+
+## V0.8 desktop and experiment workflow
+
+## Run the web app
+
+```text
+npm ci
+npm run dev
+```
+
+## Run or package the Windows app
+
+```text
+npm run desktop
+npm run desktop:build
+```
+
+The installer is created at `installer-output/Flux-EEG-0.8.0-Setup.exe`. See [DESKTOP.md](DESKTOP.md) for serial-device and signing details.
+
+## Verify the project
+
+```text
+npm run build
+npm test
+npm run test:sites
+npm run desktop:test
+```
+
+The analysis implementation and trust boundaries are documented in [ARCHITECTURE.md](ARCHITECTURE.md), while the product scope is recorded in [PRODUCT-SPEC.md](PRODUCT-SPEC.md).
+
+## Dependency and CI maintenance
+
+CI builds and tests the web application, audits the complete dependency tree, builds the unsigned Windows installer, and smoke-tests the packaged application. The targeted minimatch override patches the Electron packaging dependency graph without downgrading electron-builder. Remove it when the upstream packaging dependencies require a patched version. These software checks do not establish scientific or clinical validity.
