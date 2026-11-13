@@ -27,14 +27,14 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "5.0.4",
-    "electron": "^43.4.0",
-    "electron-builder": "^26.15.3",
-    "vite": "6.4.3"
+    "electron": "43.8.10",
+    "electron-builder": "26.18.1",
+    "vite": "6.4.6"
   },
   "allowScripts": {
-    "electron@43.4.0": true,
     "esbuild@0.25.12": true,
-    "electron-winstaller@5.4.0": true
+    "electron-winstaller@5.4.0": true,
+    "electron@43.8.10": true
   },
   "build": {
     "appId": "org.fluxeeg.desktop",
@@ -69,5 +69,11 @@
       "shortcutName": "Flux EEG",
       "deleteAppDataOnUninstall": false
     }
+  },
+  "overrides": {
+    "minimatch@>=7 <11.0.1": "11.0.8"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }

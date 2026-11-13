@@ -104,7 +104,7 @@ function createWindow() {
     return { action: "deny" };
   });
   mainWindow.webContents.on("will-navigate", (event, url) => {
-    if (url.startsWith(APP_ORIGIN)) return;
+    if (isTrustedAppUrl(url)) return;
     event.preventDefault();
     if (isSafeExternalUrl(url)) shell.openExternal(url);
   });

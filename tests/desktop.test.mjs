@@ -6,6 +6,9 @@ import security from "../desktop/security.cjs";
 test("desktop shell trusts only its packaged application origin", () => {
   assert.equal(security.isTrustedAppUrl("flux-eeg://app/"), true);
   assert.equal(security.isTrustedAppUrl("flux-eeg://other/"), false);
+  assert.equal(security.isTrustedAppUrl("flux-eeg://app.evil/"), false);
+  assert.equal(security.isTrustedAppUrl("flux-eeg://app@evil/"), false);
+  assert.equal(security.isTrustedAppUrl("flux-eeg://app:1234/"), false);
   assert.equal(security.isTrustedAppUrl("https://app/"), false);
   assert.equal(security.isTrustedAppUrl("not a url"), false);
 });
